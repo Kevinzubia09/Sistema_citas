@@ -12,20 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Mostrar alerta emergente si el correo electrónico ya está registrado
-        echo "<script>alert('El correo electrónico ya está registrado.'); window.location.href = '../index.php';</script>";
+        echo "El correo electrónico ya está registrado.";
     } else {
         // Insertar nuevo usuario en la base de datos
         $sql = "INSERT INTO usuarios (nombre, email, contrasena) VALUES ('$nombre', '$email', '$password')";
         
         if ($conn->query($sql) === TRUE) {
-            // Mostrar alerta emergente si el usuario se registra correctamente
-            echo "<script>alert('Usuario registrado exitosamente.'); window.location.href = '../index.php';</script>";
+            echo "Usuario registrado exitosamente.";
         } else {
-            // Mostrar alerta emergente si hay un error al registrar el usuario
-            echo "<script>alert('Error al registrar el usuario: " . $conn->error . "'); window.location.href = '../index.php';</script>";
+            echo "Error al registrar el usuario: " . $conn->error;
         }
     }
 }
 ?>
-
